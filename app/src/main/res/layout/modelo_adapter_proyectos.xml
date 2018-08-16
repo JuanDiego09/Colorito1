@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="132dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="37dp"
+        app:srcCompat="@drawable/ic_wb_sunny_black_24dp" />
+
+    <TextView
+        android:id="@+id/campoDesplegadas"
+        android:layout_width="181dp"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_marginEnd="26dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/campoCorrectas"
+        android:layout_width="179dp"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/campoDesplegadas"
+        android:layout_marginTop="75dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/campoIncorrectas"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/campoDesplegadas"
+        android:layout_marginTop="113dp"
+        android:text="TextView"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/campoIntentos"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignStart="@+id/campoDesplegadas"
+        android:text="Intentos 3"
+        android:textColor="#000"
+        android:textSize="18dp" />
+</RelativeLayout>
