@@ -65,7 +65,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tiempo();
                 if (intentos == 0) {
                     termina();
                 } else {
@@ -77,7 +76,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tiempo();
                 if (intentos == 0) {
                     termina();
                 } else {
@@ -89,7 +87,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tiempo();
                 if (intentos == 0) {
                     termina();
                 } else {
@@ -151,7 +148,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 desplegas++;
                 incorrectas++;
                 timer.cancel();
-
+                tiempo();
                 break;
 
         }
