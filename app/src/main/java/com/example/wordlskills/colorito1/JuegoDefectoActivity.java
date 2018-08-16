@@ -1,5 +1,6 @@
 package com.example.wordlskills.colorito1;
 
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
@@ -67,7 +68,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     termina();
                 } else {
                     comprobar(1);
-                    timer.cancel();
                 }
 
             }
@@ -79,7 +79,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     termina();
                 } else {
                     comprobar(2);
-                    timer.cancel();
                 }
             }
         });
@@ -90,7 +89,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     termina();
                 } else {
                     comprobar(3);
-                    timer.cancel();
                 }
             }
         });
@@ -101,7 +99,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     termina();
                 } else {
                     comprobar(4);
-                    timer.cancel();
                 }
             }
         });
@@ -124,6 +121,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 registra();
             }
         });
+
+        Dialog dialog=builder.create();
+        dialog.show();
 
     }
 
@@ -150,6 +150,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     incorrectas++;
                     intentos--;
                 }
+                timer.cancel();
                 tiempo();
                 break;
             case 2:
@@ -159,6 +160,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     incorrectas++;
                     intentos--;
                 }
+                timer.cancel();
                 tiempo();
 
                 break;
@@ -169,6 +171,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     incorrectas++;
                     intentos--;
                 }
+                timer.cancel();
                 tiempo();
 
                 break;
@@ -179,6 +182,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                     incorrectas++;
                     intentos--;
                 }
+                timer.cancel();
                 tiempo();
                 break;
             case 5:

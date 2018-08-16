@@ -15,14 +15,14 @@
 
             <TextView
                 android:id="@+id/textDesplegadas"
-                android:layout_width="190dp"
+                android:layout_width="180dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/textIntentos"
-                android:layout_width="190dp"
+                android:layout_width="180dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />
@@ -32,14 +32,14 @@
 
             <TextView
                 android:id="@+id/textCorrectas"
-                android:layout_width="190dp"
+                android:layout_width="180dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/textIncorrectas"
-                android:layout_width="190dp"
+                android:layout_width="180dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />
