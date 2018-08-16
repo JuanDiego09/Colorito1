@@ -141,7 +141,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
-        generarNumero();
+        if (intentos!=0){
+            generarNumero();
+            tiempo();
+        }
     }
 
 
@@ -197,7 +200,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
         palabra.setText(listaPalabras.get(numeroP));
         palabra.setTextColor(Color.parseColor(listaColores.get(numeroC)));
-        tiempo();
+
     }
 
     public void tiempo(){
@@ -213,6 +216,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 intentos--;
                 desplegas++;
                 incorrectas++;
+
+                txtdesplegadas.setText("Desplegadas " + desplegas);
+                txtincorrectas.setText("Incorrectas " + incorrectas);
+                txtintentos.setText("Intentos " + intentos);
                 generarNumero();
             }
         };
