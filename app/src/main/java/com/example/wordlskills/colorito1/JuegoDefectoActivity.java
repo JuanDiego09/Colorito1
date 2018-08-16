@@ -140,10 +140,16 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 }
                 break;
             case 5:
-                intentos--;
-                desplegas++;
-                incorrectas++;
+                if (intentos == 0) {
+                    termina();
+                } else {
+                    intentos--;
+                    desplegas++;
+                    incorrectas++;
+                    timer.cancel();
+                }
                 break;
+
         }
 
         txtdesplegadas.setText("Desplegadas " + desplegas);
