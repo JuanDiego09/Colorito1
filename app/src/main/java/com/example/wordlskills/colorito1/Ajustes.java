@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -16,9 +17,19 @@ public class Ajustes extends AppCompatActivity {
     EditText campoTiempoTotal;
     EditText campoTiempoPalabra;
 
+
+    Button btnEmpezar;
+
+    int tiempoPorPalabraR;
+    int intentosR;
+    int tiempoTotalR;
+
+    String tipo;
+
+
     Spinner listaTipo;
     ArrayList arrayTipo;
-    String tipo;
+
     boolean mostrarCampo;
     boolean valida;
 
@@ -27,7 +38,7 @@ public class Ajustes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
-
+        btnEmpezar = findViewById(R.id.btnEmpezar);
         campoTiempoPalabra = findViewById(R.id.campoTiempoPalabra);
         ///////////////////////////////////////////////////////////
         campoIntentos = findViewById(R.id.campoCantidadIntentos);
@@ -70,5 +81,9 @@ public class Ajustes extends AppCompatActivity {
                 valida = false;
             }
         });
+    }
+
+    public void onClick(View view) {
+
     }
 }

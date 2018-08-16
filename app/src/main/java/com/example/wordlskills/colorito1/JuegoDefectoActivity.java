@@ -106,7 +106,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void termina() {
-        final AlertDialog.Builder builder=new AlertDialog.Builder(this);
+         AlertDialog.Builder builder=new AlertDialog.Builder(this);
 
         builder.setTitle("Finaliza");
         String mensaje="";
@@ -123,14 +123,15 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
             }
         });
-
+        Dialog dialog;
         dialog=builder.create();
         dialog.show();
 
     }
 
     private void registra() {
-        dialog.dismiss();
+
+
         bd=conn.getWritableDatabase();
         ContentValues values=new ContentValues();
 
@@ -140,6 +141,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         values.put(Utilidades.INTENTOS,intentos);
 
         bd.insert(Utilidades.TABLA_PUNTAJES,Utilidades.DESPLEGADAS,values);
+        finish();
     }
 
     private void comprobar(int clic) {
