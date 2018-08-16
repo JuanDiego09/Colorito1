@@ -34,6 +34,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     CountDownTimer timer;
     Conexion conn;
     SQLiteDatabase bd;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void termina() {
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder=new AlertDialog.Builder(this);
 
         builder.setTitle("Finaliza");
         String mensaje="";
@@ -119,15 +120,17 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 registra();
+
             }
         });
 
-        Dialog dialog=builder.create();
+        dialog=builder.create();
         dialog.show();
 
     }
 
     private void registra() {
+        dialog.dismiss();
         bd=conn.getWritableDatabase();
         ContentValues values=new ContentValues();
 
