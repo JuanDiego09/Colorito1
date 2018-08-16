@@ -204,6 +204,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         palabra.setText(listaPalabras.get(numeroP));
         palabra.setTextColor(Color.parseColor(listaColores.get(numeroC)));
 
+        if (intentos!=0){
+            tiempo();
+        }
     }
 
     public void tiempo(){
