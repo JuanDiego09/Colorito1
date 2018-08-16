@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JuegoDefectoActivity"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textDesplegadas"
+                android:layout_width="190dp"
+                android:text="Desplegadas"
+                android:textColor="#000"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textIntentos"
+                android:layout_width="190dp"
+                android:text="Desplegadas"
+                android:textColor="#000"
+                android:textSize="30dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textCorrectas"
+                android:layout_width="190dp"
+                android:text="Desplegadas"
+                android:textColor="#000"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/textIncorrectas"
+                android:layout_width="190dp"
+                android:text="Desplegadas"
+                android:textColor="#000"
+                android:textSize="30dp" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/porcentaje"
+                android:layout_width="match_parent"
+                android:text="Desplegadas"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="30dp" />
+        </TableRow>
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/tiempo"
+                android:layout_width="match_parent"
+                android:text="Desplegadas"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="30dp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <TextView
+        android:id="@+id/Palabra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:text="Desplegadas"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="35dp" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_weight="1"
+            android:layout_width="170dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/btn2"
+            android:layout_weight="1"
+            android:layout_width="170dp"
+            android:layout_height="70dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linear"
+        android:layout_alignParentStart="true"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</RelativeLayout>
