@@ -149,6 +149,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn4.setText(listaPalabras.get(resultado[3] - 1));
 
         palabra.setText(listaPalabras.get(numeroP));
-        palabra.setBackgroundColor(Color.parseColor(listaColores.get(numeroC)));
+        palabra.setTextColor(Color.parseColor(listaColores.get(numeroC)));
     }
 }
