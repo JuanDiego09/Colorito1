@@ -48,6 +48,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtintentos.setText("Intentos " + intentos);
 
         llenarArray();
+        if (intentos!=0){
+            tiempo();
+        }
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
