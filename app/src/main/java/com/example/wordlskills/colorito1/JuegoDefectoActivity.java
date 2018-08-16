@@ -110,7 +110,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 1:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
                     correctas++;
-                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -119,7 +118,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 2:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[1] - 1)) {
                     correctas++;
-                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -128,7 +126,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 3:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[2] - 1)) {
                     correctas++;
-                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -137,14 +134,12 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 4:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[3] - 1)) {
                     correctas++;
-                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
                 }
                 break;
             case 5:
-                generarNumero();
                 intentos--;
                 desplegas++;
                 incorrectas++;
@@ -155,6 +150,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
+        generarNumero();
         tiempo();
     }
 
