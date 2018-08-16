@@ -146,15 +146,12 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 tiempo();
                 break;
             case 5:
-                if (intentos == 0) {
-                    termina();
-                    timer.cancel();
-                } else {
-                    intentos--;
-                    desplegas++;
-                    incorrectas++;
-                    timer.cancel();
-                }
+
+                intentos--;
+                desplegas++;
+                incorrectas++;
+                timer.cancel();
+
                 break;
 
         }
@@ -232,8 +229,12 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                comprobar(5);
 
+                if (intentos == 0) {
+                    termina();
+                } else {
+                    comprobar(5);
+                }
             }
         };
         timer.start();
