@@ -42,7 +42,7 @@ public class ListaPuntajes extends AppCompatActivity {
     private void consulta() {
         bd = conn.getReadableDatabase();
 
-        Cursor cursor = bd.rawQuery("SELECT * FROM " + Utilidades.TABLA_PUNTAJES + " ORDER BY " + Utilidades.CORRECTAS + " DESC", null);
+            Cursor cursor = bd.rawQuery("SELECT * FROM " + Utilidades.TABLA_PUNTAJES + " ORDER BY " + Utilidades.DESPLEGADAS + " DESC ", null);
 
         int numero = 0;
 
