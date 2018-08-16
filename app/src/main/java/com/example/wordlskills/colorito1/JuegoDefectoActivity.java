@@ -3,8 +3,10 @@ package com.example.wordlskills.colorito1;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +34,69 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         palabra = findViewById(R.id.Palabra);
 
         llenarArray();
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comprobar(1);
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comprobar(2);
+            }
+        });
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comprobar(3);
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                comprobar(4);
+            }
+        });
     }
+
+    private void comprobar(int clic) {
+
+        switch (clic) {
+            case 1:
+                if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
+                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 2:
+                if (listaColores.get(numeroC) == listaColores.get(resultado[1] - 1)) {
+                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 3:
+                if (listaColores.get(numeroC) == listaColores.get(resultado[2] - 1)) {
+                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case 4:
+                if (listaColores.get(numeroC) == listaColores.get(resultado[3] - 1)) {
+                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+        }
+        generarNumero();
+    }
+
 
     private void llenarArray() {
         listaColores = new ArrayList<>();
@@ -70,7 +134,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         for (int i = 0; i < n; i++) {
             res = rnd.nextInt(k);
             resultado[i] = numero[res];
-            numero[res] = numero[k + 1];
+            numero[res] = numero[k - 1];
             k--;
         }
 
@@ -80,8 +144,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn4.setBackgroundColor(Color.parseColor(listaColores.get(resultado[3] - 1)));
 
         btn1.setText(listaPalabras.get(resultado[0] - 1));
-        btn2.setText(listaPalabras.get(resultado[0] - 1));
-        btn3.setText(listaPalabras.get(resultado[0] - 1));
-        btn4.setText(listaPalabras.get(resultado[0] - 1));
+        btn2.setText(listaPalabras.get(resultado[1] - 1));
+        btn3.setText(listaPalabras.get(resultado[2] - 1));
+        btn4.setText(listaPalabras.get(resultado[3] - 1));
+
+        palabra.setText(listaPalabras.get(numeroP));
+        palabra.setBackgroundColor(Color.parseColor(listaColores.get(numeroC)));
     }
 }
