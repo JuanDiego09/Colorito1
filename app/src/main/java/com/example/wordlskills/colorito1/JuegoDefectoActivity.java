@@ -120,10 +120,8 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 registra();
-
             }
         });
-        Dialog dialog;
         dialog=builder.create();
         dialog.show();
 
@@ -141,6 +139,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         values.put(Utilidades.INTENTOS,intentos);
 
         bd.insert(Utilidades.TABLA_PUNTAJES,Utilidades.DESPLEGADAS,values);
+        dialog.dismiss();
         finish();
     }
 
