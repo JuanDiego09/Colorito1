@@ -44,6 +44,7 @@ public class ListaPuntajes extends AppCompatActivity {
 
         Cursor cursor = bd.rawQuery("SELECT * FROM " + Utilidades.TABLA_PUNTAJES + " ORDER BY " + Utilidades.CORRECTAS + " DESC", null);
 
+        int numero = 0;
 
         while (cursor.moveToNext()) {
             puntajesVo = new PuntajesVo();
@@ -51,7 +52,10 @@ public class ListaPuntajes extends AppCompatActivity {
             puntajesVo.setCorrectas(cursor.getString(1));
             puntajesVo.setIncorrectas(cursor.getString(2));
             puntajesVo.setIntentos("3");
-            listaPuntajes.add(puntajesVo);
+            if (numero <= 3) {
+                listaPuntajes.add(puntajesVo);
+            }
+            numero++;
         }
         adapter = new ProyectosAdapter(listaPuntajes);
         recyclerUsuarios.setAdapter(adapter);
