@@ -1,13 +1,20 @@
 package com.example.wordlskills.colorito1;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.wordlskills.colorito1.utilidades.Conexion;
+import com.example.wordlskills.colorito1.utilidades.Utilidades;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,11 +31,14 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     int resultado[];
     Random rnd;
     CountDownTimer timer;
+    Conexion conn;
+    SQLiteDatabase bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_defecto);
+        conn=new Conexion(getApplicationContext(),"puntajes",null,1);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
@@ -98,11 +108,40 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void termina() {
-        Toast.makeText(getApplicationContext(), "FINALIZA", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+
+        builder.setTitle("Finaliza");
+        String mensaje="";
+        mensaje+="Desplegadas "+desplegas+"\n";
+        mensaje+="Correctas "+correctas +"\n";;
+        mensaje+="Incorrectas "+incorrectas +"\n";;
+        mensaje+="Porcentaje de reaccion "+porcentaje+"\n";;
+        builder.setMessage(mensaje);
+
+        builder.setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                registra();
+            }
+        });
+
+    }
+
+    private void registra() {
+        bd=conn.getWritableDatabase();
+        ContentValues values=new ContentValues();
+
+        values.put(Utilidades.DESPLEGADAS,desplegas);
+        values.put(Utilidades.CORRECTAS,correctas);
+        values.put(Utilidades.INCORRECTAS,incorrectas);
+        values.put(Utilidades.INTENTOS,intentos);
+
+        bd.insert(Utilidades.TABLA_PUNTAJES,Utilidades.DESPLEGADAS,values);
     }
 
     private void comprobar(int clic) {
         desplegas++;
+        porcentaje=(correctas*100)/desplegas;
         switch (clic) {
             case 1:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
@@ -145,7 +184,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 5:
 
                 intentos--;
-                desplegas++;
                 incorrectas++;
                 timer.cancel();
                 tiempo();
@@ -157,6 +195,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
+        txtporcentaje.setText("Porcentaje Reaccion "+porcentaje);
         generarNumero();
     }
 
