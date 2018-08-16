@@ -1,11 +1,15 @@
 package com.example.wordlskills.colorito1;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.wordlskills.colorito1.adapter.ProyectosAdapter;
 import com.example.wordlskills.colorito1.entidades.PuntajesVo;
+import com.example.wordlskills.colorito1.utilidades.Conexion;
+import com.example.wordlskills.colorito1.utilidades.Utilidades;
 
 import java.util.ArrayList;
 
@@ -13,29 +17,43 @@ public class ListaPuntajes extends AppCompatActivity {
 
     RecyclerView recyclerUsuarios;
     ProyectosAdapter adapter;
-    ArrayList <PuntajesVo> listaPuntajes;
+    ArrayList<PuntajesVo> listaPuntajes;
+    Conexion conn;
+    SQLiteDatabase bd;
+    PuntajesVo puntajesVo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_puntajes);
 
-
+        conn = new Conexion(getApplicationContext(), "puntajes", null, 1);
         recyclerUsuarios = findViewById(R.id.RecylerPuntajes);
 
 
-        PuntajesVo puntajesVo = new PuntajesVo();
+        puntajesVo = new PuntajesVo();
         listaPuntajes = new ArrayList<>();
 
-        for (int i = 0; i< 10; i++ ){
-            puntajesVo.setCorrectas("4");
-            puntajesVo.setIncorrectas("4");
-            puntajesVo.setDesplegadas("4");
+        consulta();
 
+
+    }
+
+    private void consulta() {
+        bd = conn.getReadableDatabase();
+
+        Cursor cursor = bd.rawQuery("SELECT * FROM " + Utilidades.TABLA_PUNTAJES + " ORDER BY " + Utilidades.CORRECTAS + " DESC", null);
+
+
+        while (cursor.moveToNext()) {
+            puntajesVo = new PuntajesVo();
+            puntajesVo.setDesplegadas(cursor.getString(0));
+            puntajesVo.setCorrectas(cursor.getString(1));
+            puntajesVo.setIncorrectas(cursor.getString(2));
+            puntajesVo.setIntentos("3");
             listaPuntajes.add(puntajesVo);
         }
         adapter = new ProyectosAdapter(listaPuntajes);
         recyclerUsuarios.setAdapter(adapter);
-
     }
 }
