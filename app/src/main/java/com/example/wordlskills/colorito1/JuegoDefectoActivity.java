@@ -53,11 +53,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intentos != 0) {
-                    comprobar(1);
-                    tiempo();
-                } else {
+                if (intentos == 0) {
                     termina();
+                } else {
+                    comprobar(1);
+                    timer.cancel();
                 }
 
             }
@@ -66,11 +66,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tiempo();
-                if (intentos != 0) {
-                    comprobar(2);
-                    tiempo();
-                } else {
+                if (intentos == 0) {
                     termina();
+                } else {
+                    comprobar(2);
+                    timer.cancel();
                 }
             }
         });
@@ -78,11 +78,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tiempo();
-                if (intentos != 0) {
-                    comprobar(3);
-                    tiempo();
-                } else {
+                if (intentos == 0) {
                     termina();
+                } else {
+                    comprobar(3);
+                    timer.cancel();
                 }
             }
         });
@@ -90,11 +90,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tiempo();
-                if (intentos != 0) {
-                    comprobar(4);
-                    tiempo();
-                } else {
+                if (intentos == 0) {
                     termina();
+                } else {
+                    comprobar(4);
+                    timer.cancel();
                 }
             }
         });
@@ -105,7 +105,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void comprobar(int clic) {
-        timer.cancel();
         desplegas++;
         switch (clic) {
             case 1:
@@ -149,7 +148,6 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 intentos--;
                 desplegas++;
                 incorrectas++;
-                tiempo();
                 break;
         }
 
@@ -157,6 +155,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
+        tiempo();
     }
 
 
