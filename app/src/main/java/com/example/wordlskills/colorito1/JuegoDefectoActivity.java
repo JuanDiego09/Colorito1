@@ -43,9 +43,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
 
         txtdesplegadas.setText("Desplegadas " + desplegas);
-        txtincorrectas.setText("Desplegadas " + incorrectas);
-        txtcorrectas.setText("Desplegadas " + correctas);
-        txtintentos.setText("Desplegadas " + intentos);
+        txtincorrectas.setText("Incorrectas " + incorrectas);
+        txtcorrectas.setText("Correctas " + correctas);
+        txtintentos.setText("Intentos " + intentos);
 
         llenarArray();
 
@@ -54,6 +54,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intentos != 0) {
                     comprobar(1);
+                    timer.cancel();
                 } else {
                     termina();
                 }
@@ -65,6 +66,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intentos != 0) {
                     comprobar(2);
+                    timer.cancel();
                 } else {
                     termina();
                 }
@@ -75,6 +77,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intentos != 0) {
                     comprobar(3);
+                    timer.cancel();
                 } else {
                     termina();
                 }
@@ -85,6 +88,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (intentos != 0) {
                     comprobar(4);
+                    timer.cancel();
                 } else {
                     termina();
                 }
@@ -134,9 +138,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
         }
         txtdesplegadas.setText("Desplegadas " + desplegas);
-        txtincorrectas.setText("Desplegadas " + incorrectas);
-        txtcorrectas.setText("Desplegadas " + correctas);
-        txtintentos.setText("Desplegadas " + intentos);
+        txtincorrectas.setText("Incorrectas " + incorrectas);
+        txtcorrectas.setText("Correctas " + correctas);
+        txtintentos.setText("Intentos " + intentos);
         generarNumero();
     }
 
@@ -193,5 +197,24 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
         palabra.setText(listaPalabras.get(numeroP));
         palabra.setTextColor(Color.parseColor(listaColores.get(numeroC)));
+    }
+
+    public void tiempo(){
+        timer=new CountDownTimer(4000,1000) {
+            @Override
+            public void onTick(long l) {
+                int segundosRestantes = (int) l / 1000;
+                txttiempo.setText("Tiempo: " + Integer.toString(segundosRestantes));
+            }
+
+            @Override
+            public void onFinish() {
+                intentos--;
+                desplegas++;
+                incorrectas++;
+                generarNumero();
+            }
+        };
+        timer.start();
     }
 }
