@@ -22,7 +22,8 @@
         <activity
             android:name=".ListaPuntajes"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".Ajustes"></activity>
+        <activity android:name=".Ajustes"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

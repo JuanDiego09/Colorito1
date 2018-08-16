@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Ajustes extends AppCompatActivity {
 
 
     Button btnEmpezar;
-
+    int seleccionaPeosicion = 0;
     int tiempoPorPalabraR;
     int intentosR;
     int tiempoTotalR;
@@ -32,13 +33,15 @@ public class Ajustes extends AppCompatActivity {
 
     boolean mostrarCampo;
     boolean valida;
+    //boolean valida;
+    //boolean valida;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
-        btnEmpezar = findViewById(R.id.btnEmpezar);
+
         campoTiempoPalabra = findViewById(R.id.campoTiempoPalabra);
         ///////////////////////////////////////////////////////////
         campoIntentos = findViewById(R.id.campoCantidadIntentos);
@@ -59,6 +62,7 @@ public class Ajustes extends AppCompatActivity {
                     tipo = arrayTipo.get(position).toString();
                     valida = true;
                 }else {
+                    seleccionaPeosicion = 0;
                     valida = false;
                 }
 
@@ -66,11 +70,13 @@ public class Ajustes extends AppCompatActivity {
                     case 1:
                         campoIntentos.setVisibility(View.VISIBLE);
                         campoTiempoTotal.setVisibility(View.INVISIBLE);
+                        seleccionaPeosicion = 1;
                         break;
 
                     case 2:
                         campoTiempoTotal.setVisibility(View.VISIBLE);
                         campoIntentos.setVisibility(View.INVISIBLE);
+                        seleccionaPeosicion = 2;
                         break;
                 }
 
@@ -79,6 +85,19 @@ public class Ajustes extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 valida = false;
+            }
+        });
+
+
+        btnEmpezar = findViewById(R.id.btnEmpezar);
+        btnEmpezar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (seleccionaPeosicion==1 || seleccionaPeosicion ==2 ){
+                    Toast.makeText(getApplicationContext(),"Bien",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Mal",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
