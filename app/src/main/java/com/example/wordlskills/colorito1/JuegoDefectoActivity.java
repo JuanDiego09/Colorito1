@@ -48,16 +48,14 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtintentos.setText("Intentos " + intentos);
 
         llenarArray();
-        if (intentos!=0){
-            tiempo();
-        }
+        tiempo();
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (intentos != 0) {
                     comprobar(1);
-                    timer.cancel();
+                    tiempo();
                 } else {
                     termina();
                 }
@@ -67,9 +65,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tiempo();
                 if (intentos != 0) {
                     comprobar(2);
-                    timer.cancel();
+                    tiempo();
                 } else {
                     termina();
                 }
@@ -78,9 +77,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tiempo();
                 if (intentos != 0) {
                     comprobar(3);
-                    timer.cancel();
+                    tiempo();
                 } else {
                     termina();
                 }
@@ -89,9 +89,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tiempo();
                 if (intentos != 0) {
                     comprobar(4);
-                    timer.cancel();
+                    tiempo();
                 } else {
                     termina();
                 }
@@ -104,11 +105,13 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void comprobar(int clic) {
+        timer.cancel();
         desplegas++;
         switch (clic) {
             case 1:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
                     correctas++;
+                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -117,6 +120,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 2:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[1] - 1)) {
                     correctas++;
+                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -125,6 +129,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 3:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[2] - 1)) {
                     correctas++;
+                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
@@ -133,21 +138,25 @@ public class JuegoDefectoActivity extends AppCompatActivity {
             case 4:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[3] - 1)) {
                     correctas++;
+                    generarNumero();
                 } else {
                     incorrectas++;
                     intentos--;
                 }
                 break;
-
+            case 5:
+                generarNumero();
+                intentos--;
+                desplegas++;
+                incorrectas++;
+                tiempo();
+                break;
         }
+
         txtdesplegadas.setText("Desplegadas " + desplegas);
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
-        if (intentos!=0){
-            generarNumero();
-            tiempo();
-        }
     }
 
 
@@ -204,13 +213,10 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         palabra.setText(listaPalabras.get(numeroP));
         palabra.setTextColor(Color.parseColor(listaColores.get(numeroC)));
 
-        if (intentos!=0){
-            tiempo();
-        }
     }
 
-    public void tiempo(){
-        timer=new CountDownTimer(4000,1000) {
+    public void tiempo() {
+        timer = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long l) {
                 int segundosRestantes = (int) l / 1000;
@@ -219,14 +225,8 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                intentos--;
-                desplegas++;
-                incorrectas++;
+                comprobar(5);
 
-                txtdesplegadas.setText("Desplegadas " + desplegas);
-                txtincorrectas.setText("Incorrectas " + incorrectas);
-                txtintentos.setText("Intentos " + intentos);
-                generarNumero();
             }
         };
         timer.start();
