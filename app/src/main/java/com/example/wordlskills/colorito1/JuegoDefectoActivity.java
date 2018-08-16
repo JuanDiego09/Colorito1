@@ -19,7 +19,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     int numeroP, numeroC, n, k;
     int numero[];
     int resultado[];
-    Random rnd=new Random();
+    Random rnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,25 +63,25 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         resultado = new int[n];
 
         for (int i = 0; i < n; i++) {
-            numero[i] = n + 1;
+            numero[i] = i + 1;
         }
-
-        int res=0;
+        rnd = new Random();
+        int res;
         for (int i = 0; i < n; i++) {
-            res=rnd.nextInt(k);
-            resultado[i]=numero[res];
-            numero[res]=numero[k+1];
+            res = rnd.nextInt(k);
+            resultado[i] = numero[res];
+            numero[res] = numero[k + 1];
             k--;
         }
 
-        btn1.setBackgroundColor(Color.parseColor(listaColores.get(resultado[0]-1)));
-        btn2.setBackgroundColor(Color.parseColor(listaColores.get(resultado[1]-1)));
-        btn3.setBackgroundColor(Color.parseColor(listaColores.get(resultado[2]-1)));
-        btn4.setBackgroundColor(Color.parseColor(listaColores.get(resultado[3]-1)));
+        btn1.setBackgroundColor(Color.parseColor(listaColores.get(resultado[0] - 1)));
+        btn2.setBackgroundColor(Color.parseColor(listaColores.get(resultado[1] - 1)));
+        btn3.setBackgroundColor(Color.parseColor(listaColores.get(resultado[2] - 1)));
+        btn4.setBackgroundColor(Color.parseColor(listaColores.get(resultado[3] - 1)));
 
-        btn1.setText(listaPalabras.get(resultado[0]-1));
-        btn2.setText(listaPalabras.get(resultado[0]-1));
-        btn3.setText(listaPalabras.get(resultado[0]-1));
-        btn4.setText(listaPalabras.get(resultado[0]-1));
+        btn1.setText(listaPalabras.get(resultado[0] - 1));
+        btn2.setText(listaPalabras.get(resultado[0] - 1));
+        btn3.setText(listaPalabras.get(resultado[0] - 1));
+        btn4.setText(listaPalabras.get(resultado[0] - 1));
     }
 }
