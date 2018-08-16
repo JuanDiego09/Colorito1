@@ -27,5 +27,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ajuste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ListaPuntajes.class);
+                startActivity(intent);
+            }
+        });
     }
 }
