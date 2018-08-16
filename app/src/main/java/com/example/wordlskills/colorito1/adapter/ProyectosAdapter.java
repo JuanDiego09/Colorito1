@@ -15,6 +15,11 @@ public class ProyectosAdapter extends RecyclerView.Adapter<ProyectosAdapter.Proy
 
 
     ArrayList<PuntajesVo> listaPuntajes;
+
+    public ProyectosAdapter(ArrayList<PuntajesVo> listaPuntajes) {
+        this.listaPuntajes = listaPuntajes;
+    }
+
     @Override
     public ProyectosHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.modelo_adapter_proyectos,null,false);
@@ -23,9 +28,9 @@ public class ProyectosAdapter extends RecyclerView.Adapter<ProyectosAdapter.Proy
 
     @Override
     public void onBindViewHolder(ProyectosHolder holder, int position) {
-        holder.correctas.setText(listaPuntajes.get(position).getCorrectas());
-        holder.incorrectas.setText(listaPuntajes.get(position).getIncorrectas());
-        holder.desplegadas.setText(listaPuntajes.get(position).getDesplegadas());
+        holder.correctas.setText("Correctas: " + listaPuntajes.get(position).getCorrectas());
+        holder.incorrectas.setText("Inorrectas: " + listaPuntajes.get(position).getIncorrectas());
+        holder.desplegadas.setText("Desplegadas: " + listaPuntajes.get(position).getDesplegadas());
     }
 
     @Override

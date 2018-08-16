@@ -16,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".JuegoDefectoActivity"></activity>
+        <activity
+            android:name=".JuegoDefectoActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ListaPuntajes"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Ajustes"></activity>
     </application>
 
 </manifest>
