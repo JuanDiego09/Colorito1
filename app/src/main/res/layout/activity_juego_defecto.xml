@@ -16,7 +16,7 @@
             <TextView
                 android:id="@+id/textDesplegadas"
                 android:layout_width="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="15dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />
@@ -34,7 +34,7 @@
             <TextView
                 android:id="@+id/textCorrectas"
                 android:layout_width="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="15dp"
                 android:text="Desplegadas"
                 android:textColor="#000"
                 android:textSize="25dp" />

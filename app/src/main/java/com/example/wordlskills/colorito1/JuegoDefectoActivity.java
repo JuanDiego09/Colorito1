@@ -106,23 +106,20 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void termina() {
-         AlertDialog.Builder builder=new AlertDialog.Builder(this);
-
-        builder.setTitle("Finaliza");
-        String mensaje="";
-        mensaje+="Desplegadas "+desplegas+"\n";
-        mensaje+="Correctas "+correctas +"\n";;
-        mensaje+="Incorrectas "+incorrectas +"\n";;
-        mensaje+="Porcentaje de reaccion "+porcentaje+"\n";;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        builder.setTitle("Puntuación");
+        String mensaje = "Correctas: " + correctas +"\n"+
+                "Incorrectas: " + incorrectas +"\n"+
+                "Porcentaje De Reacción: " + porcentaje;
         builder.setMessage(mensaje);
-
-        builder.setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 registra();
+
             }
         });
-        dialog=builder.create();
+        Dialog dialog = builder.create();
         dialog.show();
 
     }
