@@ -117,8 +117,8 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void generarNumero() {
-        numeroC = (int) Math.random() * 4;
-        numeroP = (int) Math.random() * 4;
+        numeroC = (int) Math.floor(Math.random() *4);
+        numeroP = (int)  Math.floor(Math.random() *4);
 
         n = 4;
         k = n;
