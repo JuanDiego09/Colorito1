@@ -1,6 +1,7 @@
 package com.example.wordlskills.colorito1;
 
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +18,12 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     TextView palabra, txtdesplegadas, txtintentos, txtcorrectas, txtincorrectas, txttiempo, txtporcentaje;
     ArrayList<String> listaColores;
     ArrayList<String> listaPalabras;
-    int desplegas, correctas, incorrectas, intentos, porcentaje;
+    int desplegas, correctas, incorrectas, intentos = 3, porcentaje;
     int numeroP, numeroC, n, k;
     int numero[];
     int resultado[];
     Random rnd;
+    CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,68 +34,109 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn3 = findViewById(R.id.btn3);
         btn4 = findViewById(R.id.btn4);
         palabra = findViewById(R.id.Palabra);
+        txtdesplegadas = findViewById(R.id.textDesplegadas);
+        txtintentos = findViewById(R.id.textIntentos);
+        txtcorrectas = findViewById(R.id.textCorrectas);
+        txtincorrectas = findViewById(R.id.textIncorrectas);
+        txttiempo = findViewById(R.id.tiempo);
+        txtporcentaje = findViewById(R.id.porcentaje);
+
+
+        txtdesplegadas.setText("Desplegadas " + desplegas);
+        txtincorrectas.setText("Desplegadas " + incorrectas);
+        txtcorrectas.setText("Desplegadas " + correctas);
+        txtintentos.setText("Desplegadas " + intentos);
 
         llenarArray();
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comprobar(1);
+                if (intentos != 0) {
+                    comprobar(1);
+                } else {
+                    termina();
+                }
+
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comprobar(2);
+                if (intentos != 0) {
+                    comprobar(2);
+                } else {
+                    termina();
+                }
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comprobar(3);
+                if (intentos != 0) {
+                    comprobar(3);
+                } else {
+                    termina();
+                }
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comprobar(4);
+                if (intentos != 0) {
+                    comprobar(4);
+                } else {
+                    termina();
+                }
             }
         });
     }
 
-    private void comprobar(int clic) {
+    private void termina() {
+        Toast.makeText(getApplicationContext(), "FINALIZA", Toast.LENGTH_SHORT).show();
+    }
 
+    private void comprobar(int clic) {
+        desplegas++;
         switch (clic) {
             case 1:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
-                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                    correctas++;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                    incorrectas++;
+                    intentos--;
                 }
                 break;
             case 2:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[1] - 1)) {
-                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                    correctas++;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                    incorrectas++;
+                    intentos--;
                 }
                 break;
             case 3:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[2] - 1)) {
-                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                    correctas++;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                    incorrectas++;
+                    intentos--;
                 }
                 break;
             case 4:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[3] - 1)) {
-                    Toast.makeText(getApplicationContext(), "Bien", Toast.LENGTH_SHORT).show();
+                    correctas++;
                 } else {
-                    Toast.makeText(getApplicationContext(), "Mal", Toast.LENGTH_SHORT).show();
+                    incorrectas++;
+                    intentos--;
                 }
                 break;
 
         }
+        txtdesplegadas.setText("Desplegadas " + desplegas);
+        txtincorrectas.setText("Desplegadas " + incorrectas);
+        txtcorrectas.setText("Desplegadas " + correctas);
+        txtintentos.setText("Desplegadas " + intentos);
         generarNumero();
     }
 
@@ -117,8 +160,8 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     private void generarNumero() {
-        numeroC = (int) Math.floor(Math.random() *4);
-        numeroP = (int)  Math.floor(Math.random() *4);
+        numeroC = (int) Math.floor(Math.random() * 4);
+        numeroP = (int) Math.floor(Math.random() * 4);
 
         n = 4;
         k = n;
