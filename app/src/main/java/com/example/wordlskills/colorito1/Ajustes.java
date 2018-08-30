@@ -1,5 +1,6 @@
 package com.example.wordlskills.colorito1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,9 +22,10 @@ public class Ajustes extends AppCompatActivity {
 
     Button btnEmpezar;
     int seleccionaPeosicion = 0;
-    int tiempoPorPalabraR;
-    int intentosR;
-    int tiempoTotalR;
+    String tiempoPorPalabraR;
+    String intentosR;
+    String tiempoTotalR;
+    int tipoint;
 
     String tipo;
 
@@ -45,6 +47,7 @@ public class Ajustes extends AppCompatActivity {
         campoTiempoPalabra = findViewById(R.id.campoTiempoPalabra);
         ///////////////////////////////////////////////////////////
         campoIntentos = findViewById(R.id.campoCantidadIntentos);
+        campoIntentos.setVisibility(View.INVISIBLE);
         campoTiempoTotal = findViewById(R.id.campoTiempoPorPalabra);
         ///////////////////////////////////////////////////////////
         arrayTipo = new ArrayList();
@@ -71,12 +74,14 @@ public class Ajustes extends AppCompatActivity {
                         campoIntentos.setVisibility(View.VISIBLE);
                         campoTiempoTotal.setVisibility(View.INVISIBLE);
                         seleccionaPeosicion = 1;
+                        tipoint=1;
                         break;
 
                     case 2:
                         campoTiempoTotal.setVisibility(View.VISIBLE);
                         campoIntentos.setVisibility(View.INVISIBLE);
                         seleccionaPeosicion = 2;
+                        tipoint=2;
                         break;
                 }
 
@@ -94,15 +99,22 @@ public class Ajustes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (seleccionaPeosicion==1 || seleccionaPeosicion ==2 ){
-                    Toast.makeText(getApplicationContext(),"Bien",Toast.LENGTH_SHORT).show();
+                    tiempoPorPalabraR=campoTiempoPalabra.getText().toString();
+                    tiempoTotalR=campoTiempoTotal.getText().toString();
+                    intentosR=campoIntentos.getText().toString();
+                    Intent miIntent=new Intent(Ajustes.this,JuegoAjusted.class);
+                    Bundle miBundle=new Bundle();
+                    miBundle.putInt("tipo",tipoint);
+                    miBundle.putString("tiempoPa",tiempoPorPalabraR);
+                    miBundle.putString("tiempoTo",tiempoTotalR);
+                    miBundle.putString("intentos",intentosR);
+                    miIntent.putExtra("datos",miBundle);
+                    startActivity(miIntent);
                 }else {
-                    Toast.makeText(getApplicationContext(),"Mal",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Seleccione un tipo",Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void onClick(View view) {
-
-    }
 }

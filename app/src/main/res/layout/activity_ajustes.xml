@@ -11,24 +11,26 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="28dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:columnCount="3">
 
-        <Spinner android:layout_columnWeight="3"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+        <Spinner
             android:id="@+id/spinnerTipoJuego"
-            android:layout_columnSpan="3">
-        </Spinner>
-
-
-        <EditText android:hint="Tiempo por palabra (en segundos)"
+            android:layout_height="wrap_content"
             android:layout_columnSpan="3"
-            android:id="@+id/campoTiempoPalabra"
-            android:layout_marginTop="22dp"
             android:layout_columnWeight="3"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"></Spinner>
+
+
+        <EditText
+            android:id="@+id/campoTiempoPalabra"
+            android:layout_columnSpan="3"
+            android:inputType="number"
+            android:layout_columnWeight="3"
+            android:layout_marginTop="22dp"
+            android:gravity="center_horizontal"
+            android:hint="Tiempo por palabra (en segundos)" />
 
     </GridLayout>
 
@@ -39,22 +41,26 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_columnSpan="1">
+            android:layout_columnSpan="1"
+            android:layout_columnWeight="1">
 
-            <EditText android:hint="Tiempo por palabra (en segundos)"
-                android:layout_marginTop="22dp"
+            <EditText
                 android:id="@+id/campoTiempoPorPalabra"
-                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"/>
-
-            <EditText android:hint="Cantidad De intentos"
                 android:layout_marginTop="22dp"
                 android:gravity="center_horizontal"
+                android:hint="Tiempo por palabra (en segundos)"
+                android:inputType="number" />
+
+            <EditText
                 android:id="@+id/campoCantidadIntentos"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"/>
+                android:layout_marginTop="22dp"
+                android:gravity="center_horizontal"
+                android:hint="Cantidad De intentos"
+                android:inputType="number" />
 
         </RelativeLayout>
 
@@ -66,12 +72,15 @@
         android:layout_marginTop="33dp"
         android:columnCount="3">
 
-        <Button android:layout_columnSpan="3"
-            android:layout_columnWeight="3"
+        <Button
             android:id="@+id/btnEmpezar"
-            android:text="EMPEZAR"
+            android:layout_columnSpan="3"
+            android:layout_columnWeight="3"
+            android:textColor="#fff"
             android:layout_marginTop="145dp"
-            android:onClick="onClick"/>
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onClick"
+            android:text="EMPEZAR" />
     </GridLayout>
 
 

@@ -20,10 +20,10 @@ import com.example.wordlskills.colorito1.utilidades.Utilidades;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class JuegoDefectoActivity extends AppCompatActivity {
+public class JuegoAjusted extends AppCompatActivity {
 
     Button btn1, btn2, btn3, btn4;
-    TextView palabra, txtdesplegadas, txtintentos, txtcorrectas, txtincorrectas, txttiempo, txtporcentaje;
+    TextView palabra, txtdesplegadas, txtintentos, txtcorrectas, txtincorrectas, txttiempo, txtporcentaje, txtTiempoTotal;
     ArrayList<String> listaColores;
     ArrayList<String> listaPalabras;
     int desplegas, correctas, incorrectas, intentos = 3, porcentaje;
@@ -31,7 +31,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     int numero[];
     int resultado[];
     Random rnd;
-    CountDownTimer timer;
+    long total, tiempoP;
+    boolean tipo1, tipo2;
+    CountDownTimer timer, tiempoTotal;
     Conexion conn;
     SQLiteDatabase bd;
     Dialog dialog;
@@ -39,8 +41,11 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego_defecto);
-        conn=new Conexion(getApplicationContext(),"puntajes",null,1);
+        setContentView(R.layout.activity_juego_ajusted);
+        Bundle miBundle = getIntent().getBundleExtra("datos");
+
+
+        conn = new Conexion(getApplicationContext(), "puntajes", null, 1);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
@@ -52,33 +57,58 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas = findViewById(R.id.textIncorrectas);
         txttiempo = findViewById(R.id.tiempo);
         txtporcentaje = findViewById(R.id.porcentaje);
-        txtporcentaje.setText("Porcentaje Reaccion " + intentos);
+        txtTiempoTotal = findViewById(R.id.tiempoTotal);
 
 
         txtdesplegadas.setText("Desplegadas " + desplegas);
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
-        tiempo();
+        txtporcentaje.setText("Porcentaje Reaccion " + intentos);
+
+        tiempoP = Integer.parseInt(miBundle.getString("tiempoPa")) * 1000;
         llenarArray();
+        if (miBundle.getInt("tipo") == 1) {
+            intentos = Integer.parseInt(miBundle.getString("intentos"));
+            tipo1 = true;
+            tipo2 = false;
+            txtTiempoTotal.setVisibility(View.INVISIBLE);
+            txtintentos.setVisibility(View.VISIBLE);
+            tiempo();
+        } else {
+            total = Integer.parseInt(miBundle.getString("tiempoTo")) * 1000;
+            txtintentos.setVisibility(View.INVISIBLE);
+            txtTiempoTotal.setVisibility(View.VISIBLE);
+            tipo2 = true;
+            tipo1 = false;
+            tiempoTo();
+            tiempo();
+        }
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intentos == 0) {
-                    termina();
-                } else {
+                if (tipo1 == true) {
+                    if (intentos == 0) {
+                        termina();
+                    } else {
+                        comprobar(1);
+                    }
+                } else if (tipo2 == true) {
                     comprobar(1);
                 }
-
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intentos == 0) {
-                    termina();
-                } else {
+                if (tipo1 == true) {
+                    if (intentos == 0) {
+                        termina();
+                    } else {
+                        comprobar(2);
+                    }
+                } else if (tipo2 == true) {
                     comprobar(2);
                 }
             }
@@ -86,9 +116,13 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intentos == 0) {
-                    termina();
-                } else {
+                if (tipo1 == true) {
+                    if (intentos == 0) {
+                        termina();
+                    } else {
+                        comprobar(3);
+                    }
+                } else if (tipo2 == true) {
                     comprobar(3);
                 }
             }
@@ -96,9 +130,13 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intentos == 0) {
-                    termina();
-                } else {
+                if (tipo1 == true) {
+                    if (intentos == 0) {
+                        termina();
+                    } else {
+                        comprobar(4);
+                    }
+                } else if (tipo2 == true) {
                     comprobar(4);
                 }
             }
@@ -107,46 +145,33 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
     private void termina() {
         timer.cancel();
-         AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Finaliza");
-        String mensaje="";
-        mensaje+="Desplegadas "+desplegas+"\n";
-        mensaje+="Correctas "+correctas +"\n";;
-        mensaje+="Incorrectas "+incorrectas +"\n";;
-        mensaje+="Porcentaje de reaccion "+porcentaje+"\n";;
+        String mensaje = "";
+        mensaje += "Desplegadas " + desplegas + "\n";
+        mensaje += "Correctas " + correctas + "\n";
+        ;
+        mensaje += "Incorrectas " + incorrectas + "\n";
+        ;
+        mensaje += "Porcentaje de reaccion " + porcentaje + "\n";
+        ;
         builder.setMessage(mensaje);
 
         builder.setPositiveButton("aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                registra();
+                finish();
             }
         });
-        dialog=builder.create();
+        dialog = builder.create();
         dialog.show();
 
     }
 
-    private void registra() {
-
-
-        bd=conn.getWritableDatabase();
-        ContentValues values=new ContentValues();
-
-        values.put(Utilidades.DESPLEGADAS,desplegas);
-        values.put(Utilidades.CORRECTAS,correctas);
-        values.put(Utilidades.INCORRECTAS,incorrectas);
-        values.put(Utilidades.INTENTOS,intentos);
-
-        bd.insert(Utilidades.TABLA_PUNTAJES,Utilidades.DESPLEGADAS,values);
-        dialog.dismiss();
-        finish();
-    }
-
     private void comprobar(int clic) {
         desplegas++;
-        porcentaje=(correctas*100)/desplegas;
+        porcentaje = (correctas * 100) / desplegas;
         switch (clic) {
             case 1:
                 if (listaColores.get(numeroC) == listaColores.get(resultado[0] - 1)) {
@@ -197,6 +222,9 @@ public class JuegoDefectoActivity extends AppCompatActivity {
                 timer.cancel();
                 tiempo();
                 break;
+            case 6:
+                termina();
+                break;
 
         }
 
@@ -204,7 +232,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
         txtincorrectas.setText("Incorrectas " + incorrectas);
         txtcorrectas.setText("Correctas " + correctas);
         txtintentos.setText("Intentos " + intentos);
-        txtporcentaje.setText("Porcentaje Reaccion "+porcentaje);
+        txtporcentaje.setText("Porcentaje Reaccion " + porcentaje);
         generarNumero();
     }
 
@@ -265,7 +293,7 @@ public class JuegoDefectoActivity extends AppCompatActivity {
     }
 
     public void tiempo() {
-        timer = new CountDownTimer(4000, 1000) {
+        timer = new CountDownTimer(tiempoP, 1000) {
             @Override
             public void onTick(long l) {
                 int segundosRestantes = (int) l / 1000;
@@ -274,19 +302,38 @@ public class JuegoDefectoActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
-                if (intentos == 0) {
-                    termina();
+                if (tipo1 == true) {
+                    if (intentos == 0) {
+                        termina();
+                    } else {
+                        comprobar(5);
+                    }
                 } else {
                     comprobar(5);
                 }
+
             }
         };
         timer.start();
     }
 
+    public void tiempoTo() {
+        tiempoTotal = new CountDownTimer(total, 1000) {
+            @Override
+            public void onTick(long l) {
+                int segundosRestantes = (int) l / 1000;
+                txtTiempoTotal.setText("Tiempo: " + Integer.toString(segundosRestantes));
+            }
+
+            @Override
+            public void onFinish() {
+                comprobar(6);
+            }
+        };
+        tiempoTotal.start();
+    }
+
     public void onClick(View view) {
-        timer.cancel();
         finish();
     }
 }

@@ -3,7 +3,7 @@ package com.example.wordlskills.colorito1.entidades;
 public class PuntajesVo {
 
     private String desplegadas;
-    private String correctas;
+    private int correctas;
     private String incorrectas;
     private String intentos;
 
@@ -15,11 +15,11 @@ public class PuntajesVo {
         this.desplegadas = desplegadas;
     }
 
-    public String getCorrectas() {
+    public int getCorrectas() {
         return correctas;
     }
 
-    public void setCorrectas(String correctas) {
+    public void setCorrectas(int correctas) {
         this.correctas = correctas;
     }
 

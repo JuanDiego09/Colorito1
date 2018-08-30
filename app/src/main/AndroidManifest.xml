@@ -4,12 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icono"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,12 +19,16 @@
         </activity>
         <activity
             android:name=".JuegoDefectoActivity"
-            android:parentActivityName=".MainActivity" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".ListaPuntajes"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".Ajustes"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".Ajustes"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".JuegoAjusted"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

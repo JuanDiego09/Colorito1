@@ -10,7 +10,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:src="@drawable/icono512" />
 
     <Button
         android:id="@+id/btnjugar"
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Jugar" />
+        android:text="Jugar"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btnPuntajes"
@@ -26,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Lista Puntajes" />
+        android:text="Lista Puntajes"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/btnAjuste"
@@ -34,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Ajustes" />
+        android:text="Ajustes"
+        android:textColor="#fff" />
 
 </LinearLayout>

@@ -49,7 +49,7 @@ public class ListaPuntajes extends AppCompatActivity {
         while (cursor.moveToNext()) {
             puntajesVo = new PuntajesVo();
             puntajesVo.setDesplegadas(cursor.getString(0));
-            puntajesVo.setCorrectas(cursor.getString(1));
+            puntajesVo.setCorrectas(Integer.parseInt(cursor.getString(1)));
             puntajesVo.setIncorrectas(cursor.getString(2));
             puntajesVo.setIntentos("3");
             if (numero <= 3) {
